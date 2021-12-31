@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Curso Inicial - UNLP Inform&aacute;tica</title>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+  <link rel="icon"  href="https://www.info.unlp.edu.ar/favicon.ico" />
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+  <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales/es.js"></script>
+</head>
+<body>
+<div class="p-5">
+  <div class="text-right">
+    <h3>Curso Inicial - Ciclo Lectivo 2022</h3>
+  </div>
+{% block busqueda %}
+  <div>
+    <form class="form-inline" autocomplete="off" action="/buscar" method="post">
+      <h5 class="form-group mb-2 ">Ingrese su Comisi&oacute;n</h5>
+      <div class="form-group mx-sm-3 mb-2">
+        <label for="inputComi2" class="sr-only">Comisi&oacute</label>
+        <input type="text" autocomplete="off" class="form-control" name="inputComi2" id="inputComi2" placeholder="M1A-T20B">
+      </div>
+      <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+    </form>
+  </div>
+{% endblock %}
+  <div class="card clearfix">
+    <div class="card-body p-0">
+      <div id="calendar"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    headerToolbar:  false,
+    themeSystem: 'bootstrap',
+    initialView: 'dayGridMonth',
+    fixedWeekCount: false,
+    initialDate: "2022-02-01",
+    locale: "es",
+    firstDay: 0,
+    eventContent: function (args, createElement) {
+      let titleEl = document.createElement('h4')
+      titleEl.innerHTML = args.event._def.title
+      titleEl.classList.add('title', 'mt-1', 'pr-2');
+
+      let divEl = document.createElement('div')
+      divEl.classList.add('d-flex', 'flex-column', 'w-100');
+
+      const icon = args.event._def.extendedProps.img;
+      let iconEl = document.createElement('em')
+      iconEl.classList.add('las', 'la-'+icon, 'ps-1');
+
+      let infoEl = document.createElement('p')
+      infoEl.innerHTML = args.event._def.extendedProps.info;
+      infoEl.classList.add('pr-1');
+
+      divEl.appendChild(titleEl)
+      divEl.appendChild(infoEl)
+
+      let arrayOfDomNodes = [ iconEl, divEl ]
+      return { domNodes: arrayOfDomNodes }
+    },
+{% block events %}
+{% endblock %}
+  });
+  calendar.render();
+});
+</script>
+
+</body>
+</html>

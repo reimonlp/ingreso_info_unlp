@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+{% block busqueda %}
+  <div>
+    <form class="form-inline">
+    <div class="form-group mb-2 me-2">
+      <button type="button" class="btn btn-secondary" onclick="window.location='/'">Atras</button>
+    </div>
+    <h5 class="form-group mb-2 mx-3">Comisiones {{ comision }}</h5>
+    </form>
+  </div>
+{% endblock %}
+
+{% block events %}
+    events: {{ events|safe }}
+{% endblock %}
+</script>

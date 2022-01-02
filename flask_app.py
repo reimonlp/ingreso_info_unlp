@@ -87,6 +87,8 @@ def ren_events(comision):
                             alternancia = False
 
                         if wd == 2 and m[0] == 3:
+                            if weeks >= 4:
+                                continue
                             if alternancia:
                                 modo = '[presencial]'
                                 img = imagen[0]

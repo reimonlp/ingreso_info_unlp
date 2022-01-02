@@ -3,7 +3,6 @@ import re
 from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
-app.secret_key = b'\xf8\xff\x9f\x80\xc9nl\xb8o\xa9&E\x83%\x11n'
 
 
 @app.route("/")
@@ -145,4 +144,3 @@ if __name__ == '__main__':
     #     if not a:
     #         continue
     #     print(f'{bin2comi(a)}: {a}')
-    ren_events(0000)

@@ -81,19 +81,18 @@ def ren_events(comision):
                         horario = horarios[i][m[1]]
                         tipo = 'Teoría ' if m[1] == 1 else ''
                         imagen = ['university', 'project-diagram', 'video']
-                        if comision[1:2] == '0' and weeks % 2 == 0:
-                            alternancia = True
-                        elif comision[1:2] == '1' and weeks % 2 != 0:
+                        if (comision[1:2] == '0' and weeks % 2 == 0) or (comision[1:2] == '1' and weeks % 2 != 0):
                             alternancia = True
                         else:
                             alternancia = False
 
-                        if wd == 2 and not alternancia:
-                            continue
-
-                        if m[0] == 3 and comision in m[3]:
-                            modo = '[webex]'
-                            img = imagen[2]
+                        if wd == 2 and m[0] == 3:
+                            if alternancia:
+                                modo = '[presencial]'
+                                img = imagen[0]
+                            else:
+                                modo = '[webex]'
+                                img = imagen[2]
                         elif comision in m[3]:
                             modo = '[IDEAS]'
                             img = imagen[1]
@@ -102,7 +101,7 @@ def ren_events(comision):
                             img = imagen[0]
 
                         events += "{" + f"title: '{tipo}{materia}', info: '{horario}<br><b>{modo}</b>', " + \
-                            f"start: '2022-{date_.month:02d}-{date_.day:02d}', img: '{img}'" + "}, "
+                            f"start: '2022-{date_.month:02d}-{date_.day:02d}', img: '{img}'" + "}, \n"
 
             if wd == 6:
                 weeks += 1

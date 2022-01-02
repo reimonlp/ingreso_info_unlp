@@ -9,7 +9,7 @@ Lenguajes utilizados:
 - Flask 1.1.x/Jinja 2.11.x
 - HTML5
 - CSS3
-- JavaScript
+- JavaScript 1.5
 
 Frameworks:
 - jQuery 3.3.1

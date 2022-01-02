@@ -10,6 +10,17 @@ h3 {
     width: 3em;
 }
 
+#calendar .fc-daygrid-day-events {
+    height: 7.7em;
+    display: flex;
+    flex-direction: column;
+}
+
+#calendar .fc-daygrid-day-events .fc-daygrid-event-harness {
+    width: 100% !important;
+    height: 3.85em;
+}
+
 #calendar .fc-day-mon *, #calendar .fc-day-tue *, #calendar .fc-day-wed *,
 #calendar .fc-day-thu *, #calendar .fc-day-fri * {
     opacity: 1 !important;

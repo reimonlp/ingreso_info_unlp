@@ -54,6 +54,11 @@ document.addEventListener('DOMContentLoaded', function() {
     locale: "es",
     firstDay: 0,
     eventContent: function (args, createElement) {
+      const order = args.event._def.extendedProps.order;
+
+      let divMain = document.createElement('div')
+      divMain.classList.add('fc-event-main');
+
       const icon = args.event._def.extendedProps.img;
       let iconEl = document.createElement('em')
       iconEl.classList.add('las', 'la-'+icon, 'mt-3', 'ml-1', 'mb-0');
@@ -72,13 +77,20 @@ document.addEventListener('DOMContentLoaded', function() {
       divEl.appendChild(titleEl)
       divEl.appendChild(infoEl)
 
-      let arrayOfDomNodes = [ iconEl, divEl ]
+      divMain.appendChild(iconEl)
+      divMain.appendChild(divEl)
+
+      let arrayOfDomNodes = [ divMain ]
       return { domNodes: arrayOfDomNodes }
     },
 {% block events %}
 {% endblock %}
   });
-  calendar.render();
+  calendar.render()
+
+  $('.fc-daygrid-event').addClass('fc-daygrid-block-event fc-h-event');
+  $('.fc-daygrid-event').removeClass('fc-daygrid-dot-event');
+
 });
 </script>
 

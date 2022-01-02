@@ -17,4 +17,4 @@ Frameworks:
 - FullCalendar 5.1
 - Line Awesome 1.3
 #
-> realizado con 💚 por **reimon** *(Ramón Ligorria)* bajo licencia [**GNU GPLv3**](LICENSE)
+> realizado con 💚 por [**reimon**](//github.com/reimonlp) *(Ramón Ligorria)* bajo licencia [**GNU GPLv3**](LICENSE)

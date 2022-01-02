@@ -14,8 +14,8 @@ def index():
 @app.route("/buscar", methods=['POST'])
 def buscar():
     if request.method == 'POST':
-        print(request.form['inputComi2'])
-        binario = comi2bin(request.form['inputComi2'].upper())
+        print(request.form['inputComision'])
+        binario = comi2bin(request.form['inputComision'].upper())
         if not binario:
             return redirect(f'/', 302)
             pass
@@ -61,30 +61,6 @@ grilla = [
         ((1, 0, ['1111'], ['1011']), (2, 0, ['1110'], ['1010']), (2, 1, [], ['1000', '1001', '1100', '1101'])),
     ],
 ]
-
-
-def ren_table(comision):
-    for wd, d in enumerate(grilla):
-        for i, h in enumerate(d):
-            for m in h:
-                if len(m) == 0:
-                    continue
-                if comision not in m[2] and comision not in m[3]:
-                    continue
-
-                tipo = 'Consulta de Teoría ' if m[1] == 1 else ''
-
-                if m[0] == 3 and comision in m[3]:
-                    modo = ' (webex)'
-                elif comision in m[3]:
-                    modo = ' (IDEAS)'
-                else:
-                    modo = ''
-
-                materia = materias[m[0]]
-                horario = horarios[i][m[1]]
-
-                print(f'{dias[wd]} {horario}:  {tipo}{materia}{modo}')
 
 
 def ren_events(comision):
@@ -162,7 +138,7 @@ def bin2comi(comision):
 
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=80, debug=True)
+    app.run(host='0.0.0.0', port=80, debug=True)
     # while True:
     #     userinput = input("\nIngrese su comisión:  ").upper()
     #     a = comi2bin(userinput)

@@ -58,6 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       let divMain = document.createElement('div')
       divMain.classList.add('fc-event-main');
+      if (args.event._def.extendedProps.optional == '1') {
+        divMain.classList.add('optional');
+      }
 
       const icon = args.event._def.extendedProps.img;
       let iconEl = document.createElement('em')
@@ -90,6 +93,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   $('.fc-daygrid-event').addClass('fc-daygrid-block-event fc-h-event');
   $('.fc-daygrid-event').removeClass('fc-daygrid-dot-event');
+
+  $('.fc-event-main.optional').parent().addClass('optional');
+  $('.fc-event-main.optional').removeClass('optional');
 
 });
 </script>

@@ -102,9 +102,13 @@ def ren_events(comision):
                             modo = '[presencial]'
                             img = imagen[0]
 
-                        events += "{" + f"title: '{tipo}{materia}', info: '{horario}<br><b>{modo}</b>', " + \
-                            f"start: '2022-{date_.month:02d}-{date_.day:02d}T{horario[0:5]}', img: '{img}'" + "}, \n"
-                            # f"start: '2022-{date_.month:02d}-{date_.day:02d}', img: '{img}'" + "}, \n"
+                        events += "{" + \
+                            f"title:'{tipo}{materia}', " + \
+                            f"info:'{horario}<br><b>{modo}</b>', " + \
+                            f"start:'2022-{date_.month:02d}-{date_.day:02d}T{horario[0:5]}', " + \
+                            f"img: '{img}', " + \
+                            f"optional: '{m[1]}', " + \
+                            "},"
 
             if wd == 6:
                 weeks += 1

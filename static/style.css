@@ -21,6 +21,10 @@ h3 {
     height: 3.85em;
 }
 
+#calendar .fc-daygrid-day-events .optional {
+    background-color: rgb(51 115 204 / 70%) !important;
+}
+
 #calendar .fc-day-mon *, #calendar .fc-day-tue *, #calendar .fc-day-wed *,
 #calendar .fc-day-thu *, #calendar .fc-day-fri * {
     opacity: 1 !important;

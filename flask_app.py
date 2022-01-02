@@ -3,7 +3,6 @@ import re
 from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
-app.secret_key = b'\xf8\xff\x9f\x80\xc9nl\xb8o\xa9&E\x83%\x11n'
 
 
 @app.route("/")
@@ -14,8 +13,8 @@ def index():
 @app.route("/buscar", methods=['POST'])
 def buscar():
     if request.method == 'POST':
-        print(request.form['inputComi2'])
-        binario = comi2bin(request.form['inputComi2'].upper())
+        print(request.form['inputComision'])
+        binario = comi2bin(request.form['inputComision'].upper())
         if not binario:
             return redirect(f'/', 302)
             pass
@@ -63,30 +62,6 @@ grilla = [
 ]
 
 
-def ren_table(comision):
-    for wd, d in enumerate(grilla):
-        for i, h in enumerate(d):
-            for m in h:
-                if len(m) == 0:
-                    continue
-                if comision not in m[2] and comision not in m[3]:
-                    continue
-
-                tipo = 'Consulta de Teoría ' if m[1] == 1 else ''
-
-                if m[0] == 3 and comision in m[3]:
-                    modo = ' (webex)'
-                elif comision in m[3]:
-                    modo = ' (IDEAS)'
-                else:
-                    modo = ''
-
-                materia = materias[m[0]]
-                horario = horarios[i][m[1]]
-
-                print(f'{dias[wd]} {horario}:  {tipo}{materia}{modo}')
-
-
 def ren_events(comision):
     events = ''
     try:
@@ -106,14 +81,20 @@ def ren_events(comision):
                         horario = horarios[i][m[1]]
                         tipo = 'Teoría ' if m[1] == 1 else ''
                         imagen = ['university', 'project-diagram', 'video']
-                        alternancia = True if comision[1:2] == '1' and weeks % 2 != 0 else False
+                        if (comision[1:2] == '0' and weeks % 2 == 0) or (comision[1:2] == '1' and weeks % 2 != 0):
+                            alternancia = True
+                        else:
+                            alternancia = False
 
-                        if wd == 2 and not alternancia:
-                            continue
-
-                        if m[0] == 3 and comision in m[3]:
-                            modo = '[webex]'
-                            img = imagen[2]
+                        if wd == 2 and m[0] == 3:
+                            if weeks >= 4:
+                                continue
+                            if alternancia:
+                                modo = '[presencial]'
+                                img = imagen[0]
+                            else:
+                                modo = '[webex]'
+                                img = imagen[2]
                         elif comision in m[3]:
                             modo = '[IDEAS]'
                             img = imagen[1]
@@ -121,8 +102,13 @@ def ren_events(comision):
                             modo = '[presencial]'
                             img = imagen[0]
 
-                        events += "{" + f"title: '{tipo}{materia}', info: '{horario}<br><b>{modo}</b>', " + \
-                            f"start: '2022-{date_.month:02d}-{date_.day:02d}', img: '{img}'" + "}, \n"
+                        events += "{" + \
+                            f"title:'{tipo}{materia}', " + \
+                            f"info:'{horario}<br><b>{modo}</b>', " + \
+                            f"start:'2022-{date_.month:02d}-{date_.day:02d}T{horario[0:5]}', " + \
+                            f"img: '{img}', " + \
+                            f"optional: '{m[1]}', " + \
+                            "},"
 
             if wd == 6:
                 weeks += 1
@@ -162,11 +148,10 @@ def bin2comi(comision):
 
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=80, debug=True)
+    app.run(host='0.0.0.0', port=80, debug=True)
     # while True:
     #     userinput = input("\nIngrese su comisión:  ").upper()
     #     a = comi2bin(userinput)
     #     if not a:
     #         continue
     #     print(f'{bin2comi(a)}: {a}')
-    ren_events(0000)

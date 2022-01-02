@@ -1,17 +1,78 @@
-#calendar div.fc-daygrid-event-harness > a > div {
+html {
+  font-size: 16px;
+}
+
+h3 {
+  font-size: 1.4em;
+}
+
+#calendar .fc-day-sat , #calendar .fc-day-sun {
+    width: 3em;
+}
+
+#calendar .fc-daygrid-day-events {
+    height: 7.7em;
+    display: flex;
+    flex-direction: column;
+}
+
+#calendar .fc-daygrid-day-events .fc-daygrid-event-harness {
+    width: 100% !important;
+    height: 3.85em;
+}
+
+#calendar .fc-daygrid-day-events .optional {
+    background-color: rgb(51 115 204 / 70%) !important;
+}
+
+#calendar .fc-day-mon *, #calendar .fc-day-tue *, #calendar .fc-day-wed *,
+#calendar .fc-day-thu *, #calendar .fc-day-fri * {
+    opacity: 1 !important;
+}
+
+#calendar .fc-day-sat.fc-daygrid-day, #calendar .fc-day-sun.fc-daygrid-day {
+    background: #eeeeee;
+    opacity: 0.2 !important;
+}
+
+#calendar .fc-day-sat.fc-daygrid-day *, #calendar .fc-day-sun.fc-daygrid-day * {
+    color: #000 !important;
+    opacity: initial !important;
+}
+
+body > div > div > div.text-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+body > .container-fluid > div {
+  width: 60em;
+  margin: 0 auto;
+}
+
+#calendar .fc-daygrid-event-harness > a > div {
   display: flex;
-  font-size: 0.9rem;
+  position: relative;
+  font-size: 0.7em;
   align-items: center;
   text-align: right;
 }
 
 #calendar div.fc-daygrid-event-harness > a > div .title {
   text-align: right;
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 
 #calendar em.las {
-  font-size: 3rem;
+  font-size: 3.8em;
+  position: absolute;
+  bottom: 0.1em
+}
+
+
+.fc-scroller-liquid-absolute {
+    position: relative !important;
 }
 
 #calendar .fc-event-past {
@@ -19,16 +80,6 @@
   border-color: #ffffff;
 }
 
-#calendar .fc-event-past {
-  background-color: #dfe3e7;
-  border-color: #ffffff;
-}
-
-#calendar .fc-event-past {
-  background-color: #dfe3e7;
-  border-color: #ffffff;
-}
-
-.fc-view-harness {
-    height: 94rem !important;
+body * {
+  overflow: visible !important;
 }

@@ -81,7 +81,12 @@ def ren_events(comision):
                         horario = horarios[i][m[1]]
                         tipo = 'Teoría ' if m[1] == 1 else ''
                         imagen = ['university', 'project-diagram', 'video']
-                        alternancia = True if comision[1:2] == '1' and weeks % 2 != 0 else False
+                        if comision[1:2] == '0' and weeks % 2 == 0:
+                            alternancia = True
+                        elif comision[1:2] == '1' and weeks % 2 != 0:
+                            alternancia = True
+                        else:
+                            alternancia = False
 
                         if wd == 2 and not alternancia:
                             continue

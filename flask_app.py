@@ -97,10 +97,13 @@ def ren_events(comision):
                                 img = imagen[2]
                         elif comision in m[3]:
                             modo = '[webex]'
-                            img = imagen[1]
+                            img = imagen[2]
                         else:
                             modo = '[presencial]'
                             img = imagen[0]
+
+                        if m[1] == 1:
+                            img = imagen[1]
 
                         events += "{" + \
                             f"title:'{tipo}{materia}', " + \

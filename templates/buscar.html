@@ -1,4 +1,6 @@
 {% extends "index.html" %}
+{% block comisiones %}Comisiones {{ comision }} -{% endblock %}
+
 {% block busqueda %}
 onfocusin="this.placeholder='Ingrese su Comisi&oacute;n'" onfocusout="this.placeholder='Comisiones {{ comision }}'" placeholder="Comisiones {{ comision }}"
 {% endblock %}

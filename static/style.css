@@ -75,11 +75,6 @@ body > .container-fluid > div {
     position: relative !important;
 }
 
-#calendar .fc-event-past {
-  background-color: #dfe3e7;
-  border-color: #ffffff;
-}
-
 body * {
   overflow: visible !important;
 }
